@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useMemo, useState, type ReactNo
 
 type BookingCtx = {
   open: boolean;
-  preset?: string;
+  preset: string | undefined;
   openBooking: (treatmentId?: string) => void;
   closeBooking: () => void;
 };

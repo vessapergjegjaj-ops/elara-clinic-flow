@@ -48,13 +48,15 @@ export function BeforeAfterSlider({
         loading="lazy"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 overflow-hidden" style={{ width: `${pos}%` }}>
+      <div
+        className="absolute inset-0"
+        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+      >
         <img
           src={before}
           alt={`${label} — before treatment`}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ width: ref.current?.clientWidth ?? undefined }}
         />
       </div>
 
