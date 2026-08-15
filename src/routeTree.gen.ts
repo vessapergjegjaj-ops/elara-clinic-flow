@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BeforeAfterRouteImport } from './routes/before-after'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as TeamRouteImport } from './routes/team'
+import { Route as TreatmentsRouteImport } from './routes/treatments'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BeforeAfterRoute = BeforeAfterRouteImport.update({
+  id: '/before-after',
+  path: '/before-after',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TreatmentsRoute = TreatmentsRouteImport.update({
+  id: '/treatments',
+  path: '/treatments',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/before-after': typeof BeforeAfterRoute
+  '/contact': typeof ContactRoute
+  '/team': typeof TeamRoute
+  '/treatments': typeof TreatmentsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/before-after': typeof BeforeAfterRoute
+  '/contact': typeof ContactRoute
+  '/team': typeof TeamRoute
+  '/treatments': typeof TreatmentsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/before-after': typeof BeforeAfterRoute
+  '/contact': typeof ContactRoute
+  '/team': typeof TeamRoute
+  '/treatments': typeof TreatmentsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/before-after' | '/contact' | '/team' | '/treatments'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/before-after' | '/contact' | '/team' | '/treatments'
+  id: '__root__' | '/' | '/before-after' | '/contact' | '/team' | '/treatments'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BeforeAfterRoute: typeof BeforeAfterRoute
+  ContactRoute: typeof ContactRoute
+  TeamRoute: typeof TeamRoute
+  TreatmentsRoute: typeof TreatmentsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/before-after': {
+      id: '/before-after'
+      path: '/before-after'
+      fullPath: '/before-after'
+      preLoaderRoute: typeof BeforeAfterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/treatments': {
+      id: '/treatments'
+      path: '/treatments'
+      fullPath: '/treatments'
+      preLoaderRoute: typeof TreatmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BeforeAfterRoute: BeforeAfterRoute,
+  ContactRoute: ContactRoute,
+  TeamRoute: TeamRoute,
+  TreatmentsRoute: TreatmentsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
