@@ -256,7 +256,7 @@ export function BookingModal() {
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       className="mt-2"
                     />
-                    {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
+                    {errors['name'] && <p className="mt-1 text-xs text-destructive">{errors['name']}</p>}
                   </div>
                   <div>
                     <Label htmlFor="bk-phone">Phone</Label>
@@ -267,8 +267,8 @@ export function BookingModal() {
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
                       className="mt-2"
                     />
-                    {errors.phone && (
-                      <p className="mt-1 text-xs text-destructive">{errors.phone}</p>
+                    {errors['phone'] && (
+                      <p className="mt-1 text-xs text-destructive">{errors['phone']}</p>
                     )}
                   </div>
                 </div>
@@ -282,7 +282,7 @@ export function BookingModal() {
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="mt-2"
                   />
-                  {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
+                  {errors['email'] && <p className="mt-1 text-xs text-destructive">{errors['email']}</p>}
                 </div>
                 <div>
                   <Label htmlFor="bk-notes">Notes (optional)</Label>
