@@ -10,14 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as BeforeAfterRouteImport } from './routes/before-after'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as TreatmentsRouteImport } from './routes/treatments'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BeforeAfterRoute = BeforeAfterRouteImport.update({
@@ -28,6 +35,11 @@ const BeforeAfterRoute = BeforeAfterRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TeamRoute = TeamRouteImport.update({
@@ -43,38 +55,68 @@ const TreatmentsRoute = TreatmentsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/before-after': typeof BeforeAfterRoute
   '/contact': typeof ContactRoute
+  '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/treatments': typeof TreatmentsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/before-after': typeof BeforeAfterRoute
   '/contact': typeof ContactRoute
+  '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/treatments': typeof TreatmentsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/before-after': typeof BeforeAfterRoute
   '/contact': typeof ContactRoute
+  '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/treatments': typeof TreatmentsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/before-after' | '/contact' | '/team' | '/treatments'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/before-after'
+    | '/contact'
+    | '/pricing'
+    | '/team'
+    | '/treatments'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/before-after' | '/contact' | '/team' | '/treatments'
-  id: '__root__' | '/' | '/before-after' | '/contact' | '/team' | '/treatments'
+  to:
+    | '/'
+    | '/about'
+    | '/before-after'
+    | '/contact'
+    | '/pricing'
+    | '/team'
+    | '/treatments'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/before-after'
+    | '/contact'
+    | '/pricing'
+    | '/team'
+    | '/treatments'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   BeforeAfterRoute: typeof BeforeAfterRoute
   ContactRoute: typeof ContactRoute
+  PricingRoute: typeof PricingRoute
   TeamRoute: typeof TeamRoute
   TreatmentsRoute: typeof TreatmentsRoute
 }
@@ -86,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/before-after': {
@@ -100,6 +149,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/team': {
@@ -121,8 +177,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   BeforeAfterRoute: BeforeAfterRoute,
   ContactRoute: ContactRoute,
+  PricingRoute: PricingRoute,
   TeamRoute: TeamRoute,
   TreatmentsRoute: TreatmentsRoute,
 }
